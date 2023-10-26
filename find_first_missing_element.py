@@ -35,15 +35,18 @@ def find(arr, s):
         '''
 
     l = 0
-    r = len(arr)
+    r = len(arr) - 1
 
-    while l != r:
+    while l <= r:
         mid = l + (r-l)//2
+
+        #print(l, r, mid, arr[mid])
+
         if arr[mid] == s:
             return mid
 
         if arr[mid] > s:
-            r = mid
+            r = mid - 1
         else:
             l = mid + 1
 
@@ -55,7 +58,7 @@ def find_non_consec(arr, pos):
             arr        (list(int)) | List of sorted, unique positive integer order id's
             pos         (int)      | position of s
         Output:
-            -          (int)       | position of last element of consecutive segment starting from s
+            -          (int)       | position of first non-consecutive starting from s
     '''
     l = pos
     r = len(arr)
@@ -63,7 +66,7 @@ def find_non_consec(arr, pos):
     while l != r:
         mid = l + (r-l)//2
 
-        if(arr[mid] - arr[pos]) > (mid - pos): #section is consecutive
+        if(arr[mid] - arr[pos]) > (mid - pos): #section is non-consecutive
             r = mid
         else:
             l = mid + 1
@@ -74,3 +77,5 @@ def find_non_consec(arr, pos):
 #print(find_first_missing_element([1, 2, 3, 4, 5, 6], 4))
 #print(find_first_missing_element([2, 3, 4, 5, 6], 1))
 #print(find_first_missing_element([2, 3, 4, 5, 6, 8], 3))
+#print(find_first_missing_element([0], 0))
+#print(find_first_missing_element([], 1))
